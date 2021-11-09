@@ -1,0 +1,37 @@
+CREATE DATABASE Supercomp;
+USE Supercomprin;
+CREATE TABLE WALLET (
+id_ewall INT NOT NULL AUTO_INCREMENT,
+nombre VARCHAR(20),
+apellidos VARCHAR(40),
+DNI VARCHAR(10) NOT NULL,
+fechaNacimiento DATE,
+email VARCHAR(20),
+saldo DOUBLE UNSIGNED NOT NULL DEFAULT '0',
+puntos INTEGER UNSIGNED NOT NULL DEFAULT '0',
+PRIMARY KEY (id_ewall));
+
+CREATE TABLE PRODUCTOS (
+id_prod INTEGER,
+nombre VARCHAR(40),
+precio double,
+puntos INTEGER,
+PRIMARY KEY (id_prod));
+
+CREATE TABLE COMPRA (
+id_com INT NOT NULL AUTO_INCREMENT,
+id_ewall INT NOT NULL,
+id_prod INT NOT NULL,
+Fecha DATE,
+PRIMARY KEY (id_com),
+FOREIGN KEY (id_prod) References PRODUCTO(id_prod),
+FOREIGN KEY (id_ewall) References WALLET(id_ewall));
+
+CREATE TABLE DEVOLUCION (
+id_dev INT NOT NULL AUTO_INCREMENT,
+id_com INT NOT NULL,
+id_prod INT NOT NULL,
+Fecha DATE,
+PRIMARY KEY (id_dev),
+FOREIGN KEY (id_com) References COMPRA(id_com));
+
